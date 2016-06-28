@@ -7,24 +7,19 @@ var mongoose = restful.mongoose;
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var ShapeLabel = require('./shape-label-schema');
-
 var baseSchema = new Schema({
 	label: {
-  				type: ObjectId,
-  				ref: ShapeLabel
-  			},
+    value : String,
+    visibility: String,
+    fontSize: Number,
+    color: String
+  },
   lineColor : String,
   lineWidth: Number,
 }, {collection: 'baseshape', discriminatorKey : '_type'});
 
-
-var Coordinate = require('./coordinate-schema');
 var pointShapeSchema = baseSchema.extend({
-	center: {
-		type: ObjectId,
-		ref: Coordinate
-	}
+	center: { x: Number, y: Number, z: Number}
 });
 
 var BaseShape = restful.model('BaseShape', baseSchema);

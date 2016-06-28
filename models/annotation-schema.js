@@ -7,14 +7,15 @@ var mongoose = restful.mongoose;
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var ImageInfo = require('./image-info-schema');
 var AnnotationLayerSchema = require('./annotation-layer-schema');
 
 var annotationSchema = new Schema({
   imageInfo: {
-  				type: ObjectId,
-  				ref: ImageInfo
-  			},
+      imageId: ObjectId,
+      imageName: String,
+      imageWidth: Number,
+      imageDepth: Number
+  },
   creator: String,
   created: Date,
   updateId: ObjectId,
@@ -25,5 +26,3 @@ var annotationSchema = new Schema({
 //Retrun model
 
 module.exports = restful.model('Annotations', annotationSchema);
-
-

@@ -6,13 +6,8 @@ var mongoose = restful.mongoose;
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var LayerNameSchema = require('./layer-name-schema');
-
 var annotationLayerSchema = new Schema({
-  layerName: {
-  				type: ObjectId,
-  				ref: LayerNameSchema
-  			},
+  layerName: { name: String },
   description: String,
   attributes : Array,
   shapes: Array,
